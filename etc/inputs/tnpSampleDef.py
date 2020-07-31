@@ -9,7 +9,8 @@ from libPython.tnpClassUtils import tnpSample
 
 ### eos repositories
 eosLegacyReReco2016 = '/eos/cms/store/group/phys_egamma/swmukher/egmNtuple_V2ID_2016/'
-eosReReco2017 = '/eos/cms/store/group/phys_egamma/swmukher/ntuple_2017_v2/'
+#eosReReco2017 = '/eos/cms/store/group/phys_egamma/swmukher/ntuple_2017_v2/'
+eosReReco2017 = '/eos/cms/store/group/phys_egamma/tnpTuples/tomc/2020-06-09/2017/merged/'
 eosReReco2018 = '/eos/cms/store/group/phys_egamma/swmukher/rereco2018/ECAL_NOISE/'
 #eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017/'
 eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017_MINIAOD_Nm1/'
@@ -20,24 +21,28 @@ eosUL2018 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MI
 ReReco2017 = {
 
     'DY_madgraph'              : tnpSample('DY_madgraph',
-                                       eosReReco2017 + 'DYJetsToLL.root',
+#                                       eosReReco2017 + 'DYJetsToLL.root',
+#                                       eosReReco2017 + 'DYJetsToLL_2018.root',
+                                       eosReReco2017 + 'DY_LO.root',
                                        isMC = True, nEvts =  -1 ),
     'DY_1j_madgraph'              : tnpSample('DY_1j_madgraph',
-                                       eosReReco2017 + 'DY1JetsToLLM50madgraphMLM.root',
+#                                       eosReReco2017 + 'DY1JetsToLLM50madgraphMLM.root',
+                                       eosReReco2017 + 'DY1_LO.root',
                                        isMC = True, nEvts =  -1 ),
 #    'DY_amcatnlo'                 : tnpSample('DY_amcatnlo',
 #                                       eosMoriond18 + 'DYJetsToLLM50amcatnloFXFX.root',
 #                                       isMC = True, nEvts =  -1 ),
     'DY_amcatnloext'                 : tnpSample('DY_amcatnloext',
-                                       eosReReco2017 + 'DYJetsToLLM50amcatnloFXFXext.root',
+                                       #eosReReco2017 + 'DYJetsToLLM50amcatnloFXFXext.root',
+                                       eosReReco2017 + 'DY_NLO_ext.root',
                                        isMC = True, nEvts =  -1 ),
 
 
-    'data_Run2017B' : tnpSample('data_Run2017B' , eosReReco2017 + 'RunB.root' , lumi = 4.793 ),
-    'data_Run2017C' : tnpSample('data_Run2017C' , eosReReco2017 + 'RunC.root' , lumi = 9.753),
-    'data_Run2017D' : tnpSample('data_Run2017D' , eosReReco2017 + 'RunD.root' , lumi = 4.320 ),
-    'data_Run2017E' : tnpSample('data_Run2017E' , eosReReco2017 + 'RunE.root' , lumi = 8.802),
-    'data_Run2017F' : tnpSample('data_Run2017F' , eosReReco2017 + 'RunF.root' , lumi = 13.567),
+    'data_Run2017B' : tnpSample('data_Run2017B' , eosReReco2017 + 'Run2017B.root' , lumi = 4.793 ),
+    'data_Run2017C' : tnpSample('data_Run2017C' , eosReReco2017 + 'Run2017C.root' , lumi = 9.753),
+    'data_Run2017D' : tnpSample('data_Run2017D' , eosReReco2017 + 'Run2017D.root' , lumi = 4.320 ),
+    'data_Run2017E' : tnpSample('data_Run2017E' , eosReReco2017 + 'Run2017E.root' , lumi = 8.802),
+    'data_Run2017F' : tnpSample('data_Run2017F' , eosReReco2017 + 'Run2017F.root' , lumi = 13.567),
 
     }
 

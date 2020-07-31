@@ -2,12 +2,313 @@
 ########## General settings
 #############################################################
 # flag to be Tested
+
+#cutpassh2aa = '(\
+#        ( abs(probe_sc_eta) < 0.8 && probe_Ele_nonTrigMVA > %f ) ||
+#        ( abs(probe_sc_eta) > 0.8 && abs(probe_sc_eta) < 1.479&& probe_Ele_nonTrigMVA > %f ) ||
+#        ( abs(probe_sc_eta) > 1.479 && probe_Ele_nonTrigMVA > %f )\
+#                )' % (0.913286,0.805013,0.358969)
+#myMedium94XV2_abseta = '(\
+#                   ( ph_abseta < 1.442\
+#                     && ph_hoe < 0.02197\
+#                     && ph_sieie < 0.01015\
+#                     && ph_chIso < 1.141\
+#                     && ph_neuIso < ( 1.189-(-ph_et*0.01512)-(-ph_et*ph_et*0.00002259) )\
+#                     && ph_phoIso < ( 2.08-(-ph_et*0.004017) )\
+#                   ) ||\
+#                   ( ph_abseta > 1.566 && ph_abseta < 2.5\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ph_chIso < 1.051\
+#                     && ph_neuIso < ( 2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023) )\
+#                     && ph_phoIso < ( 3.867-(-ph_et*0.0037) )\
+#                   )\
+#                 )'
+#myMedium94XV2 = '(\
+#                   ( abs(ph_eta) < 1.442\
+#                     && ph_hoe < 0.02197\
+#                     && ph_sieie < 0.01015\
+#                     && ph_chIso < 1.141\
+#                     && ph_neuIso < ( 1.189-(-ph_et*0.01512)-(-ph_et*ph_et*0.00002259) )\
+#                     && ph_phoIso < ( 2.08-(-ph_et*0.004017) )\
+#                   ) ||\
+#                   ( abs(ph_eta) > 1.566 && abs(ph_eta) < 2.5\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ph_chIso < 1.051\
+#                     && ph_neuIso < ( 2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023) )\
+#                     && ph_phoIso < ( 3.867-(-ph_et*0.0037) )\
+#                   )\
+#                 )'
+#myMedium94XV2_PU0 = '(\
+#                   ( abs(ph_eta) < 1.442\
+#                     && ph_hoe < 0.02197\
+#                     && ph_sieie < 0.01015\
+#                     && max(ph_chIso-(event_rho*0.0112), 0.) < 1.141\
+#                     && max(ph_neuIso-(event_rho*0.0668), 0.) < ( 1.189-(-ph_et*0.01512)-(-ph_et*ph_et*0.00002259) )\
+#                     && max(ph_phoIso-(event_rho*0.1113), 0.) < ( 2.08-(-ph_et*0.004017) )\
+#                   ) ||\
+#                   ( abs(ph_eta) > 1.566 && abs(ph_eta) < 2.5\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ph_chIso < 1.051\
+#                     && ph_neuIso < ( 2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023) )\
+#                     && ph_phoIso < ( 3.867-(-ph_et*0.0037) )\
+#                   )\
+#                 )'
+#myMedium94XV2_PU0 = '(\
+#                   ( abs(ph_eta) < 1.442\
+#                     && ph_hoe < 0.02197\
+#                     && ph_sieie < 0.01015\
+#                     && ( (ph_chIso >= event_rho*0.0112 && ph_chIso < 1.141) || (ph_chIso < event_rho*0.0112) )\
+#                     && ( (ph_neuIso >= event_rho*0.0668 && ph_neuIso < (1.189-(-ph_et*0.01512)-(-ph_et*ph_et*0.00002259))) || (ph_neuIso < event_rho*0.0668) )\
+#                     && ( (ph_phoIso >= event_rho*0.1113 && ph_phoIso < (2.08-(-ph_et*0.004017))) || (ph_phoIso < event_rho*0.1113) )\
+#                   ) ||\
+#                   ( abs(ph_eta) > 1.566 && abs(ph_eta) < 2.5\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ph_chIso < 1.051\
+#                     && ph_neuIso < ( 2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023) )\
+#                     && ph_phoIso < ( 3.867-(-ph_et*0.0037) )\
+#                   )\
+#                 )'
+#myMedium94XV2_PU1 = '(\
+#                   ( abs(ph_eta) < 1.\
+#                     && ph_hoe < 0.02197\
+#                     && ph_sieie < 0.01015\
+#                     && ( (ph_chIso >= event_rho*0.0112 && ph_chIso < 1.141) || (ph_chIso < event_rho*0.0112) )\
+#                     && ( (ph_neuIso >= event_rho*0.0668 && ph_neuIso < (1.189-(-ph_et*0.01512)-(-ph_et*ph_et*0.00002259))) || (ph_neuIso < event_rho*0.0668) )\
+#                     && ( (ph_phoIso >= event_rho*0.1113 && ph_phoIso < (2.08-(-ph_et*0.004017))) || (ph_phoIso < event_rho*0.1113) )\
+#                   ) ||\
+#                   ( abs(ph_eta) >= 1. && abs(ph_eta) < 1.479\
+#                     && ph_hoe < 0.02197\
+#                     && ph_sieie < 0.01015\
+#                     && ( (ph_chIso >= event_rho*0.0108 && ph_chIso < 1.141) || (ph_chIso < event_rho*0.0108) )\
+#                     && ( (ph_neuIso >= event_rho*0.1054 && ph_neuIso < (1.189-(-ph_et*0.01512)-(-ph_et*ph_et*0.00002259))) || (ph_neuIso < event_rho*0.1054) )\
+#                     && ( (ph_phoIso >= event_rho*0.0953 && ph_phoIso < (2.08-(-ph_et*0.004017))) || (ph_phoIso < event_rho*0.0953) )\
+#                   ) ||\
+#                   ( abs(ph_eta) >= 1.479 && abs(ph_eta) < 2.\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ( (ph_chIso >= event_rho*0.0106 && ph_chIso < 1.051) || (ph_chIso < event_rho*0.0106) )\
+#                     && ( (ph_neuIso >= event_rho*0.0786 && ph_neuIso < (2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023))) || (ph_neuIso < event_rho*0.0786) )\
+#                     && ( (ph_phoIso >= event_rho*0.0619 && ph_phoIso < (3.867-(-ph_et*0.0037))) || (ph_phoIso < event_rho*0.0619) )\
+#                   ) ||\
+#                   ( abs(ph_eta) >= 2. && abs(ph_eta) < 2.2\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ( (ph_chIso >= event_rho*0.01002 && ph_chIso < 1.051) || (ph_chIso < event_rho*0.01002) )\
+#                     && ( (ph_neuIso >= event_rho*0.0233 && ph_neuIso < (2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023))) || (ph_neuIso < event_rho*0.0233) )\
+#                     && ( (ph_phoIso >= event_rho*0.0837 && ph_phoIso < (3.867-(-ph_et*0.0037))) || (ph_phoIso < event_rho*0.0837) )\
+#                   ) ||\
+#                   ( abs(ph_eta) >= 2.2 && abs(ph_eta) < 2.3\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ( (ph_chIso >= event_rho*0.0098 && ph_chIso < 1.051) || (ph_chIso < event_rho*0.0098) )\
+#                     && ( (ph_neuIso >= event_rho*0.0078 && ph_neuIso < (2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023))) || (ph_neuIso < event_rho*0.0078) )\
+#                     && ( (ph_phoIso >= event_rho*0.1070 && ph_phoIso < (3.867-(-ph_et*0.0037))) || (ph_phoIso < event_rho*0.1070) )\
+#                   ) ||\
+#                   ( abs(ph_eta) >= 2.3 && abs(ph_eta) < 2.4\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ( (ph_chIso >= event_rho*0.0089 && ph_chIso < 1.051) || (ph_chIso < event_rho*0.0089) )\
+#                     && ( (ph_neuIso >= event_rho*0.0028 && ph_neuIso < (2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023))) || (ph_neuIso < event_rho*0.0028) )\
+#                     && ( (ph_phoIso >= event_rho*0.1212 && ph_phoIso < (3.867-(-ph_et*0.0037))) || (ph_phoIso < event_rho*0.1212) )\
+#                   ) ||\
+#                   ( abs(ph_eta) >= 2.4\
+#                     && ph_hoe < 0.0326\
+#                     && ph_sieie < 0.0272\
+#                     && ( (ph_chIso >= event_rho*0.0089 && ph_chIso < 1.051) || (ph_chIso < event_rho*0.0089) )\
+#                     && ( (ph_neuIso >= event_rho*0.0137 && ph_neuIso < (2.718-(-ph_et*0.0117)-(-ph_et*ph_et*0.000023))) || (ph_neuIso < event_rho*0.0137) )\
+#                     && ( (ph_phoIso >= event_rho*0.1466 && ph_phoIso < (3.867-(-ph_et*0.0037))) || (ph_phoIso < event_rho*0.1466) )\
+#                   )\
+#                 )'
+
+
+def chgIsoStr(EAchg, chgIso_C1):
+    return '( (ph_chIso >= event_rho*%f && ph_chIso < %f) || (ph_chIso < event_rho*%f) )'\
+            %(EAchg, chgIso_C1, EAchg)
+
+def neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3):
+    return '( (ph_neuIso >= event_rho*%f && ph_neuIso < (%f-(-ph_et*%f)-(-ph_et*ph_et*%f))) || (ph_neuIso < event_rho*%f) )'\
+           %(EAneu, neuIso_C1, neuIso_C2, neuIso_C3, EAneu)
+
+def phoIsoStr(EApho, phoIso_C1, phoIso_C2):
+    return '( (ph_phoIso >= event_rho*%f && ph_phoIso < (%f-(-ph_et*%f))) || (ph_phoIso < event_rho*%f) )'\
+           %(EApho, phoIso_C1, phoIso_C2, EApho)
+
+# EB
+hoeCut = 'ph_hoe < 0.02197'
+sieieCut = 'ph_sieie < 0.01015'
+chgIso_C1 = 1.141      # absPFChaHadIsoWithEACut_C1
+chgIso_C2 = 0.00       # absPFChaHadIsoWithEACut_C2
+neuIso_C1 = 1.189      # absPFNeuHadIsoWithEACut_C1
+neuIso_C2 = 0.01512    # absPFNeuHadIsoWithEACut_C2
+neuIso_C3 = 0.00002259 # absPFNeuHadIsowithEACut_C3
+phoIso_C1 = 2.08       # absPFPhoIsoWithEACut_C1
+phoIso_C2 = 0.004017   # absPFPhoIsoWithEACut_C2
+
+# 0. <= eta < 1.
+etaLow, etaHigh = 0., 1.
+EAchg, EAneu, EApho = 0.0112, 0.0668, 0.1113
+eta0To1p0 =  '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
+             +' && '+hoeCut\
+             +' && '+sieieCut\
+             +' && '+chgIsoStr(EAchg, chgIso_C1)\
+             +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+             +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+# 1. <= eta < 1.479
+etaLow, etaHigh = 1., 1.479
+EAchg, EAneu, EApho = 0.0108, 0.1054, 0.0953
+eta1p0To1p4 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
+              +' && '+hoeCut\
+              +' && '+sieieCut\
+              +' && '+chgIsoStr(EAchg, chgIso_C1)\
+              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+# EE
+hoeCut = 'ph_hoe < 0.0326'
+sieieCut = 'ph_sieie < 0.0272'
+chgIso_C1 = 1.051    # absPFChaHadIsoWithEACut_C1
+chgIso_C2 = 0.00     # absPFChaHadIsoWithEACut_C2
+neuIso_C1 = 2.718    # absPFNeuHadIsoWithEACut_C1
+neuIso_C2 = 0.0117   # absPFNeuHadIsoWithEACut_C2
+neuIso_C3 = 0.000023 # absPFNeuHadIsowithEACut_C3
+phoIso_C1 = 3.867    # absPFPhoIsoWithEACut_C1
+phoIso_C2 = 0.0037   # absPFPhoIsoWithEACut_C2
+
+# 1.479 <= eta < 2.
+etaLow, etaHigh = 1.479, 2.
+EAchg, EAneu, EApho = 0.0106, 0.0786, 0.0619
+eta1p4To2p0 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
+              +' && '+hoeCut\
+              +' && '+sieieCut\
+              +' && '+chgIsoStr(EAchg, chgIso_C1)\
+              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+# 2. <= eta < 2.2
+etaLow, etaHigh = 2., 2.2
+EAchg, EAneu, EApho = 0.01002, 0.0233, 0.0837
+eta2p0To2p2 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
+              +' && '+hoeCut\
+              +' && '+sieieCut\
+              +' && '+chgIsoStr(EAchg, chgIso_C1)\
+              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+# 2.2 <= eta < 2.3
+etaLow, etaHigh = 2.2, 2.3
+EAchg, EAneu, EApho = 0.0098, 0.0078, 0.1070
+eta2p2To2p3 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
+              +' && '+hoeCut\
+              +' && '+sieieCut\
+              +' && '+chgIsoStr(EAchg, chgIso_C1)\
+              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+# 2.3 <= eta < 2.4
+etaLow, etaHigh = 2.3, 2.4
+EAchg, EAneu, EApho = 0.0089, 0.0028, 0.1212
+eta2p3To2p4 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
+              +' && '+hoeCut\
+              +' && '+sieieCut\
+              +' && '+chgIsoStr(EAchg, chgIso_C1)\
+              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+# 2.4 <= eta
+etaLow = 2.4
+EAchg, EAneu, EApho = 0.0087, 0.0137, 0.1466
+eta2p4ToInf = '( ph_abseta >= %f'%(etaLow)\
+              +' && '+hoeCut\
+              +' && '+sieieCut\
+              +' && '+chgIsoStr(EAchg, chgIso_C1)\
+              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+
+myMedium94XV2_PU2 = '( '+eta0To1p0\
+                    +' || '+eta1p0To1p4\
+                    +' || '+eta1p4To2p0\
+                    +' || '+eta2p0To2p2\
+                    +' || '+eta2p2To2p3\
+                    +' || '+eta2p3To2p4\
+                    +' || '+eta2p4ToInf+' )'
+#cutpassh2aa = '(\
+#                   ( ph_hoe < 0.08 ) &&\
+#                   ( ph_eta < 1.4 ) &&\
+#                   ( ( ph_full5x5x_r9 > 0.5 ) ||\
+#                       ( ( ph_full5x5x_r9 > 0.85 ) &&\
+#                         ( ph_sieie < 0.015 ) &&\
+#                         ( ph_phoIso < 4. ) &&\
+#                         ( ph_chIso < 6. )\
+#                       )\
+#                   )\
+#               )'
+#cutpassh2aaV1 = '( ph_hoe < 0.08 && ph_full5x5x_r9 > 0.5 )'
+#cutpassh2aaV2 = '(\
+#cutpassh2aaV3 = '(\
+#                     ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && ph_hoe < 0.08 ) &&\
+#                     (\
+#                        ( abs(ph_eta) < 1.44 && ph_full5x5x_r9 > 0.5\
+#                           && ( ph_full5x5x_r9 > 0.85 || ( ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
+#                        ( abs(ph_eta) > 1.57 && abs(ph_eta) < 2.5 && ph_full5x5x_r9 > 0.8\
+#                           && ( ph_full5x5x_r9 > 0.90 || ( ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
+#                     )\
+#                 )'
+cutpassh2aaV4 = '(\
+                     ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && ph_hoe < 0.08 ) &&\
+                     (\
+                        ( abs(ph_eta) < 1.442 && ph_full5x5x_r9 >= 0.5\
+                           && ( ph_full5x5x_r9 > 0.85 || ( ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
+                        ( abs(ph_eta) >= 1.566 && abs(ph_eta) < 2.5 && ph_full5x5x_r9 >= 0.8\
+                           && ( ph_full5x5x_r9 > 0.90 || ( ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
+                     )\
+                 )'
+# failed:
+#cutpassh2aaV3 = '(\
+#                   ( abs(ph_eta) < 1.442\
+#                     && ph_hoe < 0.08\
+#                     && ph_chIso/ph_et < 0.05\
+#                     && ph_mva94XV2 > -0.98\
+#                     && ph_full5x5x_r9 >= 0.5\
+#                     && ( ph_full5x5x_r9 > 0.85 || (ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.) )\
+#                   ) ||\
+#                   ( abs(ph_eta) > 1.566 && abs(ph_eta) < 2.5\
+#                     && ph_hoe < 0.08\
+#                     && ph_chIso/ph_et < 0.05\
+#                     && ph_mva94XV2 > -0.98\
+#                     && ph_full5x5x_r9 >= 0.8\
+#                     && ( ph_full5x5x_r9 > 0.90 || (ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.) )\
+#                   )\
+#                 )'
+#cutpassh2aaV3 = '(\
+#                   ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && ph_hoe < 0.08 )\
+#                   && (\
+#                        ( abs(ph_eta) < 1.442 && ph_full5x5x_r9 >= 0.5\
+#                          && ( ph_full5x5x_r9 > 0.85 || (ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.) )\
+#                        ) ||\
+#                        ( abs(ph_eta) > 1.566 && abs(ph_eta) < 2.5 && ph_full5x5x_r9 >= 0.8\
+#                          && ( ph_full5x5x_r9 > 0.90 || (ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.) )\
+#                        )\
+#                      )\
+#                 )'
+
 flags = {
-    'passingLoose100XV2'   : '(passingLoose100XV2  == 1)',
-    'passingMedium100XV2'  : '(passingMedium100XV2 == 1)',
-    'passingTight100XV2'   : '(passingTight100XV2  == 1)',
-    'passingMVA94XV2wp80' : '(passingMVA94XV2wp80 == 1)',
-    'passingMVA94XV2wp90' : '(passingMVA94XV2wp90 == 1)',
+#    'passingLoose100XV2'   : '(passingLoose100XV2  == 1)',
+#    'passingMedium100XV2'  : '(passingMedium100XV2 == 1)',
+#    'passingTight100XV2'   : '(passingTight100XV2  == 1)',
+#    'passingMVA94XV2wp80' : '(passingMVA94XV2wp80 == 1)',
+#    'passingMVA94XV2wp90' : '(passingMVA94XV2wp90 == 1)',
+#    'passingCutBasedMedium94XV2'  : '(passingCutBasedMedium94XV2 == 1)',
+#    'myMedium94XV2'  : myMedium94XV2
+#    'myMedium94XV2_abseta_esc'  : myMedium94XV2_abseta_esc
+    'myMedium94XV2_PU2'  : myMedium94XV2_PU2
+#    'passingh2aa'  : cutpassh2aa
+#    'passingh2aaV2'  : cutpassh2aaV2
+#    'passingh2aaV3'  : cutpassh2aaV3
     }
 
 baseOutDir = 'results/ReReco2017/tnpPhoID/'
@@ -72,6 +373,7 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/s
 #############################################################
 biningDef = [
    { 'var' : 'ph_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
+#   { 'var' : 'ph_sc_eta' , 'type': 'float', 'bins': [-1.4442, -0.8, 0.0, 0.8, 1.4442] },
    { 'var' : 'ph_et' , 'type': 'float', 'bins': [20,35,50,100,200,500] },
 ]
 
@@ -79,24 +381,25 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17'
+#cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17'
+cutBase   = '(tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17)'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
-additionalCuts = { 
-   0 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   1 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   2 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   3 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   4 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   5 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   6 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   7 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   8 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-   9 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
-}
+#additionalCuts = { 
+#   0 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   1 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   2 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   3 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   4 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   5 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   6 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   7 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   8 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#   9 : 'sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
+#}
 
 #### or remove any additional cut (default)
-#additionalCuts = None
+additionalCuts = None
 
 #############################################################
 ########## fitting params to tune fit by hand if necessary
