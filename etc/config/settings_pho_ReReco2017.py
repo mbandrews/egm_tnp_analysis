@@ -138,15 +138,15 @@ def phoIsoStr(EApho, phoIso_C1, phoIso_C2):
            %(EApho, phoIso_C1, phoIso_C2, EApho)
 
 # EB
-hoeCut = 'ph_hoe < 0.02197'
-sieieCut = 'ph_sieie < 0.01015'
-chgIso_C1 = 1.141      # absPFChaHadIsoWithEACut_C1
-chgIso_C2 = 0.00       # absPFChaHadIsoWithEACut_C2
-neuIso_C1 = 1.189      # absPFNeuHadIsoWithEACut_C1
-neuIso_C2 = 0.01512    # absPFNeuHadIsoWithEACut_C2
+hoeCut = 'ph_hoe < 0.04596'
+sieieCut = 'ph_sieie < 0.0106'
+chgIso_C1 = 1.694 # absPFChaHadIsoWithEACut_C1
+chgIso_C2 = 0. # absPFChaHadIsoWithEACut_C2
+neuIso_C1 = 24.032 # absPFNeuHadIsoWithEACut_C1
+neuIso_C2 = 0.01512 # absPFNeuHadIsoWithEACut_C2
 neuIso_C3 = 0.00002259 # absPFNeuHadIsowithEACut_C3
-phoIso_C1 = 2.08       # absPFPhoIsoWithEACut_C1
-phoIso_C2 = 0.004017   # absPFPhoIsoWithEACut_C2
+phoIso_C1 = 2.876 # absPFPhoIsoWithEACut_C1
+phoIso_C2 = 0.004017 # absPFPhoIsoWithEACut_C2
 
 # 0. <= eta < 1.
 etaLow, etaHigh = 0., 1.
@@ -169,15 +169,15 @@ eta1p0To1p4 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
               +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
 
 # EE
-hoeCut = 'ph_hoe < 0.0326'
+hoeCut = 'ph_hoe < 0.0590'
 sieieCut = 'ph_sieie < 0.0272'
-chgIso_C1 = 1.051    # absPFChaHadIsoWithEACut_C1
-chgIso_C2 = 0.00     # absPFChaHadIsoWithEACut_C2
-neuIso_C1 = 2.718    # absPFNeuHadIsoWithEACut_C1
-neuIso_C2 = 0.0117   # absPFNeuHadIsoWithEACut_C2
+chgIso_C1 = 2.089 # absPFChaHadIsoWithEACut_C1
+chgIso_C2 = 0. # absPFChaHadIsoWithEACut_C2
+neuIso_C1 = 19.722 # absPFNeuHadIsoWithEACut_C1
+neuIso_C2 = 0.0117 # absPFNeuHadIsoWithEACut_C2
 neuIso_C3 = 0.000023 # absPFNeuHadIsowithEACut_C3
-phoIso_C1 = 3.867    # absPFPhoIsoWithEACut_C1
-phoIso_C2 = 0.0037   # absPFPhoIsoWithEACut_C2
+phoIso_C1 = 4.162 # absPFPhoIsoWithEACut_C1
+phoIso_C2 = 0.0037 # absPFPhoIsoWithEACut_C2
 
 # 1.479 <= eta < 2.
 etaLow, etaHigh = 1.479, 2.
@@ -229,7 +229,8 @@ eta2p4ToInf = '( ph_abseta >= %f'%(etaLow)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
               +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
 
-myMedium94XV2_PU2 = '( '+eta0To1p0\
+#myMedium94XV2_PU2 = '( '+eta0To1p0\
+myLoose94XV2_PU2 = '( '+eta0To1p0\
                     +' || '+eta1p0To1p4\
                     +' || '+eta1p4To2p0\
                     +' || '+eta2p0To2p2\
@@ -262,9 +263,9 @@ cutpassh2aaV4 = '(\
                      ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && ph_hoe < 0.08 ) &&\
                      (\
                         ( abs(ph_eta) < 1.442 && ph_full5x5x_r9 >= 0.5\
-                           && ( ph_full5x5x_r9 > 0.85 || ( ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
+                           && ( ph_full5x5x_r9 > 0.85 || ( ph_full5x5x_r9 <= 0.85 && ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
                         ( abs(ph_eta) >= 1.566 && abs(ph_eta) < 2.5 && ph_full5x5x_r9 >= 0.8\
-                           && ( ph_full5x5x_r9 > 0.90 || ( ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
+                           && ( ph_full5x5x_r9 > 0.90 || ( ph_full5x5x_r9 <= 0.90 && ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
                      )\
                  )'
 # failed:
@@ -302,13 +303,16 @@ flags = {
 #    'passingTight100XV2'   : '(passingTight100XV2  == 1)',
 #    'passingMVA94XV2wp80' : '(passingMVA94XV2wp80 == 1)',
 #    'passingMVA94XV2wp90' : '(passingMVA94XV2wp90 == 1)',
+#    'passingCutBasedLoose94XV2'  : '(passingCutBasedLoose94XV2 == 1)',
 #    'passingCutBasedMedium94XV2'  : '(passingCutBasedMedium94XV2 == 1)',
 #    'myMedium94XV2'  : myMedium94XV2
 #    'myMedium94XV2_abseta_esc'  : myMedium94XV2_abseta_esc
-    'myMedium94XV2_PU2'  : myMedium94XV2_PU2
+#    'myMedium94XV2_PU2'  : myMedium94XV2_PU2
+#    'myLoose94XV2_PU2'  : myLoose94XV2_PU2
 #    'passingh2aa'  : cutpassh2aa
 #    'passingh2aaV2'  : cutpassh2aaV2
 #    'passingh2aaV3'  : cutpassh2aaV3
+    'passingh2aaV4'  : cutpassh2aaV4
     }
 
 baseOutDir = 'results/ReReco2017/tnpPhoID/'
