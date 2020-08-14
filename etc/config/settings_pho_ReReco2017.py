@@ -128,18 +128,23 @@
 def chgIsoStr(EAchg, chgIso_C1):
     return '( (ph_chIso >= event_rho*%f && ph_chIso < %f) || (ph_chIso < event_rho*%f) )'\
             %(EAchg, chgIso_C1, EAchg)
+    #return 'passingCutBasedLoose94XV2PhoAnyPFIsoWithEACut == 1'
 
 def neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3):
     return '( (ph_neuIso >= event_rho*%f && ph_neuIso < (%f-(-ph_et*%f)-(-ph_et*ph_et*%f))) || (ph_neuIso < event_rho*%f) )'\
            %(EAneu, neuIso_C1, neuIso_C2, neuIso_C3, EAneu)
+    #return 'passingCutBasedLoose94XV2PhoAnyPFIsoWithEACut1 == 1'
 
 def phoIsoStr(EApho, phoIso_C1, phoIso_C2):
     return '( (ph_phoIso >= event_rho*%f && ph_phoIso < (%f-(-ph_et*%f))) || (ph_phoIso < event_rho*%f) )'\
            %(EApho, phoIso_C1, phoIso_C2, EApho)
+    #return 'passingCutBasedLoose94XV2PhoAnyPFIsoWithEAAndQuadScalingCut == 1'
 
 # EB
-hoeCut = 'ph_hoe < 0.04596'
-sieieCut = 'ph_sieie < 0.0106'
+#hoeCut = 'ph_hoe < 0.04596'
+#sieieCut = 'ph_sieie < 0.0106'
+hoeCut = 'passingCutBasedLoose94XV2PhoSingleTowerHadOverEmCut == 1'
+sieieCut = 'passingCutBasedLoose94XV2PhoFull5x5SigmaIEtaIEtaCut == 1'
 chgIso_C1 = 1.694 # absPFChaHadIsoWithEACut_C1
 chgIso_C2 = 0. # absPFChaHadIsoWithEACut_C2
 neuIso_C1 = 24.032 # absPFNeuHadIsoWithEACut_C1
@@ -147,6 +152,9 @@ neuIso_C2 = 0.01512 # absPFNeuHadIsoWithEACut_C2
 neuIso_C3 = 0.00002259 # absPFNeuHadIsowithEACut_C3
 phoIso_C1 = 2.876 # absPFPhoIsoWithEACut_C1
 phoIso_C2 = 0.004017 # absPFPhoIsoWithEACut_C2
+neuIsoCut = 'passingCutBasedLoose94XV2PhoAnyPFIsoWithEAAndQuadScalingCut == 1'
+phoIsoCut = 'passingCutBasedLoose94XV2PhoAnyPFIsoWithEACut1 == 1'
+chgIsoCut = 'passingCutBasedLoose94XV2PhoAnyPFIsoWithEACut == 1'
 
 # 0. <= eta < 1.
 etaLow, etaHigh = 0., 1.
@@ -154,9 +162,13 @@ EAchg, EAneu, EApho = 0.0112, 0.0668, 0.1113
 eta0To1p0 =  '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
              +' && '+hoeCut\
              +' && '+sieieCut\
+             +' && '+phoIsoCut\
              +' && '+chgIsoStr(EAchg, chgIso_C1)\
              +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-             +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+             +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+             +' )'
+             #+' && '+chgIsoCut\
+             #+' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)
 
 # 1. <= eta < 1.479
 etaLow, etaHigh = 1., 1.479
@@ -164,13 +176,19 @@ EAchg, EAneu, EApho = 0.0108, 0.1054, 0.0953
 eta1p0To1p4 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
               +' && '+hoeCut\
               +' && '+sieieCut\
+              +' && '+phoIsoCut\
               +' && '+chgIsoStr(EAchg, chgIso_C1)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+              +' )'
+              #+' && '+chgIsoCut\
+              #+' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)
 
 # EE
-hoeCut = 'ph_hoe < 0.0590'
-sieieCut = 'ph_sieie < 0.0272'
+#hoeCut = 'ph_hoe < 0.0590'
+#sieieCut = 'ph_sieie < 0.0272'
+#hoeCut = 'passingCutBasedLoose94XV2PhoSingleTowerHadOverEmCut == 1'
+#sieieCut = 'passingCutBasedLoose94XV2PhoFull5x5SigmaIEtaIEtaCut == 1'
 chgIso_C1 = 2.089 # absPFChaHadIsoWithEACut_C1
 chgIso_C2 = 0. # absPFChaHadIsoWithEACut_C2
 neuIso_C1 = 19.722 # absPFNeuHadIsoWithEACut_C1
@@ -185,9 +203,13 @@ EAchg, EAneu, EApho = 0.0106, 0.0786, 0.0619
 eta1p4To2p0 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
               +' && '+hoeCut\
               +' && '+sieieCut\
+              +' && '+phoIsoCut\
               +' && '+chgIsoStr(EAchg, chgIso_C1)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+              +' )'
+              #+' && '+chgIsoCut\
+              #+' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)
 
 # 2. <= eta < 2.2
 etaLow, etaHigh = 2., 2.2
@@ -195,9 +217,13 @@ EAchg, EAneu, EApho = 0.01002, 0.0233, 0.0837
 eta2p0To2p2 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
               +' && '+hoeCut\
               +' && '+sieieCut\
+              +' && '+phoIsoCut\
               +' && '+chgIsoStr(EAchg, chgIso_C1)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+              +' )'
+              #+' && '+chgIsoCut\
+              #+' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)
 
 # 2.2 <= eta < 2.3
 etaLow, etaHigh = 2.2, 2.3
@@ -205,9 +231,13 @@ EAchg, EAneu, EApho = 0.0098, 0.0078, 0.1070
 eta2p2To2p3 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
               +' && '+hoeCut\
               +' && '+sieieCut\
+              +' && '+phoIsoCut\
               +' && '+chgIsoStr(EAchg, chgIso_C1)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+              +' )'
+              #+' && '+chgIsoCut\
+              #+' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)
 
 # 2.3 <= eta < 2.4
 etaLow, etaHigh = 2.3, 2.4
@@ -215,9 +245,13 @@ EAchg, EAneu, EApho = 0.0089, 0.0028, 0.1212
 eta2p3To2p4 = '( ph_abseta >= %f && ph_abseta < %f'%(etaLow, etaHigh)\
               +' && '+hoeCut\
               +' && '+sieieCut\
+              +' && '+phoIsoCut\
               +' && '+chgIsoStr(EAchg, chgIso_C1)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+              +' )'
+              #+' && '+chgIsoCut\
+              #+' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)
 
 # 2.4 <= eta
 etaLow = 2.4
@@ -225,12 +259,16 @@ EAchg, EAneu, EApho = 0.0087, 0.0137, 0.1466
 eta2p4ToInf = '( ph_abseta >= %f'%(etaLow)\
               +' && '+hoeCut\
               +' && '+sieieCut\
+              +' && '+phoIsoCut\
               +' && '+chgIsoStr(EAchg, chgIso_C1)\
               +' && '+neuIsoStr(EAneu, neuIso_C1, neuIso_C2, neuIso_C3)\
-              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)+' )'
+              +' && '+phoIsoStr(EApho, phoIso_C1, phoIso_C2)\
+              +' )'
+              #+' && '+chgIsoCut\
+              #+' && '+neuIsoCut\
 
 #myMedium94XV2_PU2 = '( '+eta0To1p0\
-myLoose94XV2_PU2 = '( '+eta0To1p0\
+myLoose94XV2_PU4 = '( '+eta0To1p0\
                     +' || '+eta1p0To1p4\
                     +' || '+eta1p4To2p0\
                     +' || '+eta2p0To2p2\
@@ -259,12 +297,21 @@ myLoose94XV2_PU2 = '( '+eta0To1p0\
 #                           && ( ph_full5x5x_r9 > 0.90 || ( ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
 #                     )\
 #                 )'
-cutpassh2aaV4 = '(\
-                     ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && ph_hoe < 0.08 ) &&\
+#cutpassh2aaV4 = '(\
+#                     ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && ph_hoe < 0.08 ) &&\
+#                     (\
+#                        ( abs(ph_eta) < 1.442 && ph_full5x5x_r9 >= 0.5\
+#                           && ( ph_full5x5x_r9 > 0.85 || ( ph_full5x5x_r9 <= 0.85 && ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
+#                        ( abs(ph_eta) >= 1.566 && abs(ph_eta) < 2.5 && ph_full5x5x_r9 >= 0.8\
+#                           && ( ph_full5x5x_r9 > 0.90 || ( ph_full5x5x_r9 <= 0.90 && ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
+#                     )\
+#                 )'
+cutpassh2aaV5 = '(\
+                     ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && passingCutBasedLoose94XV2PhoSingleTowerHadOverEmCut == 1 ) &&\
                      (\
-                        ( abs(ph_eta) < 1.442 && ph_full5x5x_r9 >= 0.5\
+                        ( ph_abseta < 1.442 && ph_full5x5x_r9 >= 0.5\
                            && ( ph_full5x5x_r9 > 0.85 || ( ph_full5x5x_r9 <= 0.85 && ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
-                        ( abs(ph_eta) >= 1.566 && abs(ph_eta) < 2.5 && ph_full5x5x_r9 >= 0.8\
+                        ( ph_abseta >= 1.566 && ph_abseta < 2.5 && ph_full5x5x_r9 >= 0.8\
                            && ( ph_full5x5x_r9 > 0.90 || ( ph_full5x5x_r9 <= 0.90 && ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
                      )\
                  )'
@@ -309,10 +356,13 @@ flags = {
 #    'myMedium94XV2_abseta_esc'  : myMedium94XV2_abseta_esc
 #    'myMedium94XV2_PU2'  : myMedium94XV2_PU2
 #    'myLoose94XV2_PU2'  : myLoose94XV2_PU2
+#    'myLoose94XV2_PU4'  : myLoose94XV2_PU4
+#    'myLoose94XV2_hoe_sieie_c0_c1'  : myLoose94XV2_PU4
+#    'myLoose94XV2_chg_neu_pho_cutBased_hoe_sieie'  : myLoose94XV2_PU4
 #    'passingh2aa'  : cutpassh2aa
 #    'passingh2aaV2'  : cutpassh2aaV2
 #    'passingh2aaV3'  : cutpassh2aaV3
-    'passingh2aaV4'  : cutpassh2aaV4
+    'passingh2aaV5'  : cutpassh2aaV5
     }
 
 baseOutDir = 'results/ReReco2017/tnpPhoID/'
