@@ -306,10 +306,12 @@ myLoose94XV2_PU4 = '( '+eta0To1p0\
 #                           && ( ph_full5x5x_r9 > 0.90 || ( ph_full5x5x_r9 <= 0.90 && ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
 #                     )\
 #                 )'
+#                     ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && passingCutBasedLoose94XV2PhoSingleTowerHadOverEmCut == 1 ) &&\
+#                        ( ph_abseta < 1.442 && ph_full5x5x_r9 >= 0.5\
 cutpassh2aaV5 = '(\
                      ( ph_chIso/ph_et < 0.05 && ph_mva94XV2 > -0.98 && passingCutBasedLoose94XV2PhoSingleTowerHadOverEmCut == 1 ) &&\
                      (\
-                        ( ph_abseta < 1.442 && ph_full5x5x_r9 >= 0.5\
+                        ( ph_abseta < 1.44 && ph_full5x5x_r9 >= 0.5\
                            && ( ph_full5x5x_r9 > 0.85 || ( ph_full5x5x_r9 <= 0.85 && ph_sieie < 0.015 && ph_phoIso < 4. && ph_chIso < 6.))) ||\
                         ( ph_abseta >= 1.566 && ph_abseta < 2.5 && ph_full5x5x_r9 >= 0.8\
                            && ( ph_full5x5x_r9 > 0.90 || ( ph_full5x5x_r9 <= 0.90 && ph_sieie < 0.035 && ph_phoIso < 4. && ph_chIso < 6.)))\
@@ -362,7 +364,8 @@ flags = {
 #    'passingh2aa'  : cutpassh2aa
 #    'passingh2aaV2'  : cutpassh2aaV2
 #    'passingh2aaV3'  : cutpassh2aaV3
-    'passingh2aaV5'  : cutpassh2aaV5
+    'passingh2aaV5_eta1p44_EB'  : cutpassh2aaV5
+#    'passingh2aaV5_eta1p44_EB'  : cutpassh2aaV5
     }
 
 baseOutDir = 'results/ReReco2017/tnpPhoID/'
